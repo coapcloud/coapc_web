@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <HomePublic v-if="!authenticated"/>
+  <span v-else>Logged in</span>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import HomePublic from "@/views/HomePublic.vue";
 
 export default {
   name: "home",
   components: {
-    HelloWorld
+    HomePublic
+  },
+  computed: {
+    authenticated() {
+      return JSON.parse(localStorage.getItem("authenticated"));
+    }
   }
 };
 </script>
+
+<style>
+</style>
