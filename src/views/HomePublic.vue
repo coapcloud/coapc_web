@@ -8,7 +8,6 @@
 <script>
 export default {
   name: "home-public",
-  components: {},
   computed: {
     authenticated() {
       return JSON.parse(localStorage.getItem("authenticated"));
