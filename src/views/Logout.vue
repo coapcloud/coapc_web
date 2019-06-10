@@ -11,7 +11,9 @@ export default {
       .auth()
       .signOut()
       .then(() => {
-        localStorage.setItem("authenticated", false);
+        // localStorage.setItem("authenticated", false);
+        localStorage.removeItem("authenticated");
+        localStorage.removeItem("profileURL");
         window.location.href = "/";
       });
   }

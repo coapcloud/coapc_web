@@ -2,10 +2,13 @@
   <div id="app">
     <header class="header">
       <div class="logo">
-        <img src="./assets/logo.svg" alt="CoAP.cloud logo">
+        <router-link to="/">
+          <img src="./assets/logo.svg" alt="CoAP.cloud logo">
+        </router-link>
         <span class="logo-label">CoAP.cloud</span>
       </div>
-      <nav class="nav">
+      <Navigation/>
+      <!-- <nav class="nav">
         <ul>
           <li>
             <router-link to="/">Home</router-link>
@@ -18,7 +21,7 @@
             <router-link to="/logout" v-else>Logout</router-link>
           </li>
         </ul>
-      </nav>
+      </nav>-->
     </header>
     <main class="main">
       <router-view/>
@@ -30,8 +33,12 @@
 </template>
 <script>
 import "modern-normalize/modern-normalize.css";
+import Navigation from "@/views/Navigation.vue";
 
 export default {
+  components: {
+    Navigation
+  },
   computed: {
     authenticated() {
       return JSON.parse(localStorage.getItem("authenticated"));
@@ -70,39 +77,6 @@ export default {
   width: 35px;
   margin-right: 10px;
 }
-
-/* Navigation */
-.nav {
-  margin: 15px 10px 15px 0;
-  align-self: center;
-}
-
-.nav ul {
-  padding: 0;
-  margin: 0;
-}
-
-.nav ul li {
-  display: inline;
-  margin: 0;
-  padding: 0;
-  margin-right: 10px;
-}
-
-.nav ul li a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.nav ul li a.router-link-exact-active {
-  color: #654ff0;
-}
-
-.nav li:last-child {
-  margin: 0;
-}
-
-/* end Navigation */
 
 .main {
   flex-grow: 1;

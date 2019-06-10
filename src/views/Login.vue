@@ -18,7 +18,12 @@ export default {
         }
       ],
       callbacks: {
-        signInSuccessWithAuthResult() {
+        signInSuccessWithAuthResult(authResult) {
+          console.log(authResult.additionalUserInfo.profile.picture);
+          localStorage.setItem(
+            "profileURL",
+            authResult.additionalUserInfo.profile.picture
+          );
           localStorage.setItem("authenticated", true);
           window.location.href = "/";
         }

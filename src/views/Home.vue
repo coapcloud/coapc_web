@@ -12,6 +12,16 @@ export default {
   components: {
     HomePublic
   },
+  data: function() {
+    return {
+      profileURL: ""
+    };
+  },
+  mounted() {
+    if (localStorage.profileURL) {
+      this.profileURL = localStorage.profileURL;
+    }
+  },
   computed: {
     authenticated() {
       return JSON.parse(localStorage.getItem("authenticated"));
