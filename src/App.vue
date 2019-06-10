@@ -3,6 +3,7 @@
     <header class="header">
       <div class="logo">
         <img src="./assets/logo.svg" alt="CoAP.cloud logo">
+        <span class="logo-label">CoAP.cloud</span>
       </div>
       <nav class="nav">
         <ul>
@@ -53,15 +54,21 @@ export default {
 .header {
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: #dddddd;
 }
 
 .logo {
   margin: 15px 0 15px 10px;
-  width: 35px;
+  display: flex;
+  align-items: center;
 }
 
 .logo img {
   display: block;
+  width: 35px;
+  margin-right: 10px;
 }
 
 /* Navigation */
