@@ -1,11 +1,20 @@
 <template>
   <HomePublic v-if="!authenticated"/>
-  <span v-else>Logged in</span>
+  <div v-else>
+    <h1>Logged in</h1>
+    <transition-group tag="ul">
+      <li v-for="doc in documents" v-bind:key="doc.id">
+        <span>{{doc.foo}}</span>
+      </li>
+    </transition-group>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HomePublic from "@/views/HomePublic.vue";
+
+import { db } from "@/db";
 
 export default {
   name: "home",
@@ -14,8 +23,12 @@ export default {
   },
   data: function() {
     return {
-      profileURL: ""
+      profileURL: "",
+      documents: []
     };
+  },
+  firestore: {
+    documents: db.collection("sample")
   },
   mounted() {
     if (localStorage.profileURL) {
