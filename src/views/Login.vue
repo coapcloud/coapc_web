@@ -19,11 +19,9 @@ export default {
       ],
       callbacks: {
         signInSuccessWithAuthResult(authResult) {
-          console.log(authResult.additionalUserInfo.profile.picture);
-          localStorage.setItem(
-            "profileURL",
-            authResult.additionalUserInfo.profile.picture
-          );
+          localStorage.setItem("displayName", authResult.user.displayName);
+          localStorage.setItem("profileURL", authResult.user.photoURL);
+          localStorage.setItem("uid", authResult.user.uid);
           localStorage.setItem("authenticated", true);
           window.location.href = "/";
         }
