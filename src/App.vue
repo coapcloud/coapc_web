@@ -8,20 +8,6 @@
         <span class="logo-label">CoAP.cloud</span>
       </div>
       <Navigation/>
-      <!-- <nav class="nav">
-        <ul>
-          <li>
-            <router-link to="/">Home</router-link>
-          </li>
-          <li>
-            <router-link to="/about">About</router-link>
-          </li>
-          <li>
-            <router-link to="/login" v-if="!authenticated">Login</router-link>
-            <router-link to="/logout" v-else>Logout</router-link>
-          </li>
-        </ul>
-      </nav>-->
     </header>
     <main class="main">
       <router-view/>
