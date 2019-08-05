@@ -11,9 +11,10 @@ export default {
       .auth()
       .signOut()
       .then(() => {
-        // localStorage.setItem("authenticated", false);
         localStorage.removeItem("authenticated");
         localStorage.removeItem("profileURL");
+        localStorage.removeItem("displayName");
+        localStorage.removeItem("uid");
         window.location.href = "/";
       });
   }

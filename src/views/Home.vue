@@ -1,29 +1,19 @@
 <template>
-  <HomePublic v-if="!authenticated"/>
-  <Endpoints v-else/>
+  <HomePublic v-if="!authenticated" />
+  <Endpoints v-else />
 </template>
 
 <script>
 import HomePublic from "@/views/HomePublic.vue";
 import Endpoints from "@/views/Endpoints.vue";
 
-import { db } from "@/db";
+import { db } from "@/plugins/firebase/db";
 
 export default {
   name: "home",
   components: {
     HomePublic,
     Endpoints
-  },
-  data: function() {
-    return {
-      profileURL: ""
-    };
-  },
-  mounted() {
-    if (localStorage.profileURL) {
-      this.profileURL = localStorage.profileURL;
-    }
   },
   computed: {
     authenticated() {

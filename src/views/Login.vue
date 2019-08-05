@@ -1,13 +1,26 @@
 <template>
-  <div>
-    <div id="firebaseui-auth-container"></div>
-  </div>
+  <v-container fluid fill-height>
+    <v-layout align-center justify-center>
+      <v-flex xs12 sm8 md4>
+        <v-card>
+          <v-toolbar dark color="primary">
+            <v-toolbar-title>Login</v-toolbar-title>
+          </v-toolbar>
+          <v-card-text>
+            <div id="firebaseui-auth-container"></div>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 <script>
 import firebase from "firebase";
-import firebaseui from "firebaseui";
-import "../../node_modules/firebaseui/dist/firebaseui.css";
-import { firebaseConfig } from "../firebase";
+import * as firebaseui from "firebaseui";
+import { firebaseConfig } from "@/plugins/firebase/firebase";
+
+import "@/../node_modules/firebaseui/dist/firebaseui.css";
+
 export default {
   mounted() {
     let self = this;
@@ -27,6 +40,7 @@ export default {
         }
       }
     };
+
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     ui.start("#firebaseui-auth-container", uiConfig);
   }
