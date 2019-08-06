@@ -1,11 +1,11 @@
 <template>
   <v-app-bar app>
+    <router-link to="/">
+      <v-img src="@/assets/logo.svg" height="38" width="38" contain></v-img>
+    </router-link>
     <v-toolbar-title class="text-uppercase">CoAP.cloud</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn to="/" icon>
-        <v-icon>mdi-home</v-icon>
-      </v-btn>
       <v-btn to="/new" v-if="authenticated" text rounded>
         <v-icon>mdi-plus</v-icon>
       </v-btn>
@@ -35,3 +35,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.v-toolbar__title {
+  margin-left: 0.5em;
+  font-weight: 300;
+  font-size: 21px;
+  position: relative;
+  top: 1px;
+}
+</style>
