@@ -6,8 +6,8 @@
     <v-toolbar-title class="text-uppercase">CoAP.cloud</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn to="/new" v-if="authenticated" text rounded>
-        <v-icon>mdi-plus</v-icon>
+      <v-btn to="/endpoints" v-if="authenticated" text rounded>
+        <v-icon>mdi-api</v-icon>
       </v-btn>
       <v-btn to="/login" v-if="!authenticated" text rounded>Login</v-btn>
       <v-btn to="/logout" v-else text rounded>Logout</v-btn>

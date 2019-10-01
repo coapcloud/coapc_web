@@ -47,7 +47,7 @@ export default {
         owner: localStorage.uid,
         source: this.source
       });
-      router.push("/");
+      router.push("/endpoints");
     },
     reset() {
       this.$refs.form.reset();

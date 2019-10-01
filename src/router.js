@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Login from './views/Login.vue'
 import Logout from './views/Logout.vue'
 import NewEndpoint from './views/NewEndpoint.vue'
+import Endpoints from '@/views/Endpoints.vue'
 
 Vue.use(Router);
 
@@ -27,7 +28,14 @@ export default new Router({
       component: Logout
     },
     {
-      path: '/new',
+      path: '/endpoints',
+      component: Endpoints,
+      meta: {
+        protected: true
+      }
+    },
+    {
+      path: '/endpoints/new',
       component: NewEndpoint,
       meta: {
         protected: true

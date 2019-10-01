@@ -6,6 +6,10 @@
       <router-view />
     </v-content>
 
+    <v-btn bottom right fixed color="primary" fab to="/endpoints/new" v-if="authenticated">
+      <v-icon dark>mdi-plus</v-icon>
+    </v-btn>
+
     <v-footer>
       <v-flex text-center xs12>
         &copy; {{ new Date().getFullYear() }} —
