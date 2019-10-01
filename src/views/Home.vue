@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import HomePublic from "@/views/HomePublic.vue";
-import Endpoints from "@/views/Endpoints.vue";
+import HomePublic from "@/components/HomePublic.vue";
+import Endpoints from "@/components/Endpoints.vue";
 
 import { db } from "@/plugins/firebase/db";
 
