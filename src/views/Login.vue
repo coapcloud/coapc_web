@@ -19,6 +19,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import * as firebaseui from "firebaseui";
 import { firebaseConfig } from "@/plugins/firebase/firebase";
+import { db } from "@/plugins/firebase/db";
+import router from "@/router.js";
 
 import "@/../node_modules/firebaseui/dist/firebaseui.css";
 
@@ -37,7 +39,16 @@ export default {
           localStorage.setItem("profileURL", authResult.user.photoURL);
           localStorage.setItem("uid", authResult.user.uid);
           localStorage.setItem("authenticated", true);
-          window.location.href = "/";
+
+          const usersRef = db.collection("users").doc(authResult.user.uid);
+
+          usersRef.get().then(docSnapshot => {
+            if (!docSnapshot.exists) {
+              router.push("/signup");
+            } else {
+              router.push("/");
+            }
+          });
         }
       }
     };
