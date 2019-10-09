@@ -44,9 +44,9 @@ export default {
 
           usersRef.get().then(docSnapshot => {
             if (!docSnapshot.exists) {
-              router.push("/signup");
+              window.location.href = "/signup";
             } else {
-              router.push("/");
+              window.location.href = "/";
             }
           });
         }
