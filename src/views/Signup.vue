@@ -29,12 +29,25 @@ export default {
   },
   methods: {
     addNewUser: function() {
-      db.collection("users")
-        .doc(localStorage.getItem("uid"))
-        .set({
-          subdomain: this.subdomain
-        });
-      router.push("/");
+      const endpointsRef = db
+        .collection("endpoints")
+        .where("subdomain", "==", this.subdomain);
+
+      endpointsRef.get().then(docSnapshot => {
+        console.log(docSnapshot);
+        if (docSnapshot.empty) {
+          console.log("subdomain free");
+          db.collection("users")
+            .doc(localStorage.getItem("uid"))
+            .set({
+              subdomain: this.subdomain
+            });
+          localStorage.setItem("subdomain", this.subdomain);
+          router.push("/");
+        } else {
+          console.log("subdomain taken");
+        }
+      });
     },
     reset() {
       this.$refs.form.reset();
