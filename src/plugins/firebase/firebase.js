@@ -5,5 +5,6 @@ export const firebaseConfig = {
     projectId: "coapc-web",
     storageBucket: "coapc-web.appspot.com",
     messagingSenderId: "1074941275924",
-    appId: "1:1074941275924:web:bfed6330e02196e8"
+    appId: "1:1074941275924:web:bfed6330e02196e8",
+    measurementId: "G-BSPVNYNTYJ"
 };
