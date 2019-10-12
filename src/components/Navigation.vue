@@ -20,6 +20,9 @@
 </template>
 
 <script>
+import firebase from "firebase/app";
+import "firebase/analytics";
+
 export default {
   name: "Navigation",
   data() {
@@ -32,6 +35,8 @@ export default {
     var self = this;
     self.authenticated = localStorage.getItem("authenticated");
     self.profileURL = localStorage.getItem("profileURL");
+
+    firebase.analytics();
   }
 };
 </script>
