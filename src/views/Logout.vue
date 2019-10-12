@@ -17,6 +17,7 @@ export default {
         localStorage.removeItem("profileURL");
         localStorage.removeItem("displayName");
         localStorage.removeItem("uid");
+        localStorage.removeItem("subdomain");
         window.location.href = "/";
       });
   }
