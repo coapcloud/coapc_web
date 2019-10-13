@@ -46,6 +46,7 @@ export default {
             if (!docSnapshot.exists) {
               window.location.href = "/signup";
             } else {
+              localStorage.setItem("subdomain", docSnapshot.data().subdomain);
               window.location.href = "/";
             }
           });
