@@ -33,6 +33,7 @@ export default {
       endpoints: db
         .collection("endpoints")
         .where("subdomain", "==", localStorage.subdomain)
+        .where("owner", "==", localStorage.uid)
     };
   },
   computed: {
