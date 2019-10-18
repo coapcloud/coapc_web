@@ -6,6 +6,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import "firebase/analytics";
+import "firebase/storage";
 import { firestorePlugin } from "vuefire";
 
 Vue.use(firestorePlugin);
