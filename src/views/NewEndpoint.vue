@@ -13,7 +13,7 @@
                 <v-text-field v-model="path" label="Path" required></v-text-field>
                 <v-checkbox v-model="allMethods" label="All Methods" readonly></v-checkbox>
                 <v-textarea v-model="source" label="Source Code" required v-if="allMethods"></v-textarea>
-                <!-- <template v-for="method in methods" v-if="!allMethods">
+                <!-- <template v-for="method in methodsTypes" v-if="!allMethods">
                   <v-checkbox :label="method.name" v-bind:key="method.name"></v-checkbox>
                   <v-textarea
                     :label="method.name + ' Source Code'"
@@ -41,10 +41,10 @@ export default {
   data: function() {
     return {
       func: "",
-      path: "",
+      path: null,
       source: "",
       allMethods: true,
-      methods: [
+      methodsTypes: [
         { name: "GET" },
         { name: "POST" },
         { name: "PUT" },
@@ -53,46 +53,45 @@ export default {
     };
   },
   methods: {
-    createNewEndpoint: function() {
-      const query = db
+    createNewEndpoint() {
+      const that = this;
+      const endpointRef = db
         .collection("endpoints")
         .where("subdomain", "==", localStorage.subdomain)
-        .where("path", "==", this.path);
+        .where("path", "==", that.path);
 
-      const subdomainRef = storage.ref(localStorage.subdomain);
-      subdomainRef
-        .child(this.path + "/all/source.go")
-        .putString(this.source)
-        .then(function(snapshot) {
-          console.log("Uploaded a raw string!");
-          console.log(snapshot);
-        });
-
-      // localStorage.setItem("source", this.source);
-
-      query
+      endpointRef
         .get()
         .then(doc => {
           if (doc.empty) {
             console.log("unique path");
-            db.collection("endpoints")
-              .add({
-                subdomain: localStorage.subdomain,
-                function: this.func,
-                path: this.path,
-                owner: localStorage.uid,
-                source: this.source
-              })
-              .then(function(docRef) {
-                console.log("Document written with ID: ", docRef.id);
-                router.push("/endpoints");
+            const subdomainRef = storage.ref(localStorage.subdomain);
+            subdomainRef
+              .child(that.path + "/all/source.go")
+              .putString(that.source)
+              .then(function(snapshot) {
+                console.log(snapshot);
+                db.collection("endpoints")
+                  .add({
+                    subdomain: localStorage.subdomain,
+                    function: that.func,
+                    path: that.path,
+                    owner: localStorage.uid,
+                    source: that.source
+                  })
+                  .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                    that.$router.push("/endpoints");
+                  })
+                  .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                  });
               })
               .catch(function(error) {
-                console.error("Error adding document: ", error);
+                console.log("Error uploading source:", error);
               });
           } else {
             console.log("path taken");
-            this.reset();
           }
         })
         .catch(function(error) {
